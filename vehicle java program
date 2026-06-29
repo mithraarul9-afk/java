@@ -1,0 +1,53 @@
+package Trev;
+abstract class VehicleService {
+    String cn;
+    String vn;
+    String st;
+    String vc;
+    double sparePartsCost;
+    VehicleService(String cn, String vn, String st, String vc, double sparePartsCost) {
+        this.cn = cn;
+        this.vn = vn;
+        this.st = st;
+        this.vc = vc;
+        this.sparePartsCost = sparePartsCost;
+    }
+    void displayServiceDetails() {
+        System.out.println("Customer Name    : " + cn);
+        System.out.println("Vehicle Name     : " + vn);
+        System.out.println("Service Type     : " + st);
+        System.out.println("Vehicle Category : " + vc);
+        System.out.println("Spare Parts Cost : " + sparePartsCost);
+    }
+    abstract double calculateServiceCharge();
+}
+
+class CarService extends VehicleService {
+
+    CarService(String cn, String vn, String st, String vc, double sparePartsCost) {
+        super(cn, vn, st, vc, sparePartsCost);
+    }
+    double calculateServiceCharge() {
+        return 2000 + sparePartsCost;
+    }
+}
+class BikeService extends VehicleService {
+    BikeService(String cn, String vn, String st, String vc, double sparePartsCost) {
+        super(cn, vn, st, vc, sparePartsCost);
+    }
+    double calculateServiceCharge() {
+        return 800 + sparePartsCost;
+    }
+}
+public class vehicle {
+    public static void main(String[] args) {
+        VehicleService service;
+        service = new CarService("Mithra", "TNAB1234", "General Service", "Car", 3500);
+        service.displayServiceDetails();
+        System.out.println("Total Service Charge : " + service.calculateServiceCharge());
+        System.out.println();
+        service = new BikeService("Guru", "TNCD5678", "Oil Service", "Bike", 1200);
+        service.displayServiceDetails();
+        System.out.println("Total Service Charge : " + service.calculateServiceCharge());
+    }
+}
